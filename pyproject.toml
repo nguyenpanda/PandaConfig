@@ -1,0 +1,10 @@
+[project]
+name = "nguyenpanda-config"
+version = "0.1.0"
+description = "A dynamic YAML configuration engine supporting variable interpolation, function calls, and file inheritance."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "nguyenpanda>=1.0.0",
+    "pyyaml>=6.0.3",
+]

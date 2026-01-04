@@ -1,0 +1,31 @@
+name: nguyenpanda.com
+root: $(find_ancestor . $name)
+ip: 0.0.0.0
+http_port: 80
+start_time: $(now)
+
+logger:
+  name: $name
+  log_file: server.log
+  config_file: config.yaml
+  save_dir: $root/logs/$(strftime $start_time %y%m%d-%H%M%S)
+
+server:
+  domain: $name
+  ip: $ip
+  port: $http_port
+  protocol: https
+  debug: false
+  logger: $name
+
+mount:
+  base: $root
+  public: $root/public
+  components: $public/components
+  template: $public/templates
+  errors: $public/errors
+  fonts: $public/fonts
+  images: $public/images
+  pages: $public/pages
+  scripts: $public/scripts
+  styles: $public/styles
