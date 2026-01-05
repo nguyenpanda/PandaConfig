@@ -1,0 +1,10 @@
+var_a: hello
+var_b: world
+num_1: 10
+num_2: 20
+simple: hello-world
+nested_1: HELLO-WORLD
+nested_complex: HELLO-world-panda
+math_mix: Score:-35
+deep_recursion: L1-L2-L3-END
+text_interpolation: Prefix HELLO Suffix

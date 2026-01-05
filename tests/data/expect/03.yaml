@@ -1,0 +1,19 @@
+project: "panda_final"
+version: "2.5"
+# $project and $version are resolved AFTER merge, so they pick up "panda_final" and "2.5"
+install_path: "/opt/panda_final/v2.5"
+
+database:
+  host: "db-core"
+  timeout: 5000
+  driver: "postgres"
+  settings:
+    retries: 3
+    pool: 20
+
+logs: "/opt/panda_final/v2.5/logs"
+
+testing:
+  suite: "e2e"
+  # $logs resolves to the string above, then appended
+  report: "/opt/panda_final/v2.5/logs/report.xml"

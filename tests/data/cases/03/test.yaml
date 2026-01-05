@@ -1,0 +1,15 @@
+extends: "./_middleware.yaml"
+
+# Override variable again
+project: "panda_final"
+version: "2.5"
+
+# Override nested key
+database:
+  settings:
+    pool: 20 # Overrides 5
+
+# Add specific test configuration
+testing:
+  suite: "e2e"
+  report: "$logs/report.xml"

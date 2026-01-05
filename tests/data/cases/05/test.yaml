@@ -1,0 +1,33 @@
+base_ip: "192.168.1"
+node_prefix: "worker"
+
+# 1. Simple List interpolation
+cluster_nodes:
+  - "$(join $node_prefix 01)"
+  - "$(join $node_prefix 02)"
+  - "manager-01"
+
+# 2. List of Lists (Matrix)
+# [[1, 2], [3, 4]]
+matrix:
+  - ["$(add 0 1)", "$(add 1 1)"]
+  - ["$(add 1 2)", "$(add 2 2)"]
+
+# 3. List of Dictionaries
+inventory:
+  - id: 1
+    name: "$(upper alpha)"
+    ip: "$base_ip.10"
+  - id: 2
+    name: "$(upper beta)"
+    ip: "$base_ip.11"
+    tags: ["$(upper gpu)", "linux"]
+
+# 4. Dictionary with dynamic keys? 
+# (Usually keys are static in YAML, but values are dynamic)
+dynamic_map:
+  key_$(add 1 1): "value_two" # Most resolvers won't resolve Keys, only Values. 
+  # If your resolver supports Key resolution, change expectation below. 
+  # Assuming standard: Keys are static strings.
+  
+  target_host: "http://$base_ip.10:8080"

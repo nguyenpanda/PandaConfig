@@ -1,0 +1,26 @@
+base_ip: "192.168.1"
+node_prefix: "worker"
+
+cluster_nodes:
+  - "worker-01"
+  - "worker-02"
+  - "manager-01"
+
+matrix:
+  - [1, 2]
+  - [3, 4]
+
+inventory:
+  - id: 1
+    name: "ALPHA"
+    ip: "192.168.1.10"
+  - id: 2
+    name: "BETA"
+    ip: "192.168.1.11"
+    tags: ["GPU", "linux"]
+
+dynamic_map:
+  # Assuming keys are NOT resolved (standard behavior)
+  key_$(add 1 1): "value_two"
+  target_host: "http://192.168.1.10:8080"
+  

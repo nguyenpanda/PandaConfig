@@ -1,0 +1,12 @@
+extends: "./_core.yaml"
+
+# Override variable
+project: "panda_middleware"
+
+# Introduce new derived var
+logs: "$install_path/logs"
+
+# Override deep key
+database:
+  timeout: 5000 # Overrides 1000
+  driver: "postgres"

@@ -1,0 +1,12 @@
+project: "panda_core"
+version: "1.0"
+# This path relies on $project. 
+# If a child overrides $project, does this path update? (It should in post-merge resolution)
+install_path: "/opt/$project/v$version"
+
+database:
+  host: "db-core"
+  timeout: 1000
+  settings:
+    retries: 3
+    pool: 5

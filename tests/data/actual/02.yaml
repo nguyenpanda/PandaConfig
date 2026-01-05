@@ -1,0 +1,28 @@
+name: PandaConfig
+root: /Users/hatuongnguyen/datacenter/model/PandaConfig
+ip: 0.0.0.0
+http_port: 80
+start_time: '2026-01-01 12:00:00.000000'
+logger:
+  name: PandaConfig
+  log_file: server.log
+  config_file: config.yaml
+  save_dir: /Users/hatuongnguyen/datacenter/model/PandaConfig/logs/260101-120000
+server:
+  domain: PandaConfig
+  ip: 0.0.0.0
+  port: 80
+  protocol: https
+  debug: true
+  logger: PandaConfig
+mount:
+  base: /Users/hatuongnguyen/datacenter/model/PandaConfig
+  public: /Users/hatuongnguyen/datacenter/model/PandaConfig/public
+  components: /Users/hatuongnguyen/datacenter/model/PandaConfig/public/components
+  template: /Users/hatuongnguyen/datacenter/model/PandaConfig/public/templates
+  errors: /Users/hatuongnguyen/datacenter/model/PandaConfig/public/errors
+  fonts: /Users/hatuongnguyen/datacenter/model/PandaConfig/public/fonts
+  images: /Users/hatuongnguyen/datacenter/model/PandaConfig/public/images
+  pages: /Users/hatuongnguyen/datacenter/model/PandaConfig/public/pages
+  scripts: /Users/hatuongnguyen/datacenter/model/PandaConfig/public/scripts
+  styles: /Users/hatuongnguyen/datacenter/model/PandaConfig/public/styles

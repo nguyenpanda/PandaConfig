@@ -1,0 +1,4 @@
+server:
+  debug: true
+
+extends: ./base.yaml

@@ -1,0 +1,30 @@
+var_a: "hello"
+var_b: "world"
+num_1: 10
+num_2: 20
+
+# 1. Basic Join: hello-world
+simple: "$(join $var_a $var_b)"
+
+# 2. Nested: upper(join(hello, world)) -> UPPER(hello-world) -> HELLO-WORLD
+nested_1: "$(upper $(join $var_a $var_b))"
+
+# 3. Deep Nesting: 
+# join( A, join(B, C) ) -> A-B-C
+# upper(var_a) -> HELLO
+# join(var_b, panda) -> world-panda
+# join(HELLO, world-panda) -> HELLO-world-panda
+nested_complex: "$(join $(upper $var_a) $(join $var_b panda))"
+
+# 4. Math & Strings
+# add(10, 20, 5) -> 35
+# join(Score:, 35) -> Score:-35
+math_mix: "$(join Score: $(add $num_1 $num_2 5))"
+
+# 5. Triple Layer
+# join(L1, join(L2, join(L3, END)))
+deep_recursion: "$(join L1 $(join L2 $(join L3 END)))"
+
+# 6. Interpolation inside args
+# "Prefix $(upper ...)" -> "Prefix HELLO"
+text_interpolation: "Prefix $(upper $var_a) Suffix"
