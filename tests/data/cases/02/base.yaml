@@ -1,5 +1,5 @@
 name: PandaConfig
-root: $(find_ancestor . $name)
+root: nguyenpanda
 ip: 0.0.0.0
 http_port: 80
 start_time: $(now)
