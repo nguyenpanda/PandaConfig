@@ -18,10 +18,10 @@ class ConfigLoader:
         except yaml.YAMLError as e:
             raise RuntimeError(f"Error parsing YAML file {self.config_path}: {e}")
         
-        override_file = current_data.pop('override', None)
+        extend_file = current_data.pop('extends', None)
         
-        if override_file:
-            parent_path = self.config_path.parent / override_file
+        if extend_file:
+            parent_path = self.config_path.parent / extend_file
             base_data = ConfigLoader(parent_path).load()
             return self._deep_update(base_data, current_data)
         

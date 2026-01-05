@@ -51,7 +51,7 @@ class ConfigResolver:
                 depth += 1
             elif char == ')':
                 if depth == 0:
-                    return text[start_idx:i+1], text[content_start:i], start_idx, i+1
+                    return text[start_idx:i+1].strip(), text[content_start:i].strip(), start_idx, i+1
                 depth -= 1
         
         return None
