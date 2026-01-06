@@ -172,7 +172,7 @@ uv run pytest
 
 ## Author
 
-* **Email:** [hatuongnguyen@0107gmail.com](hatuongnguyen@0107gmail.com)
+* **Email:** [hatuongnguyen@0107gmail.com](mailto:hatuongnguyen@0107gmail.com)
 * **GitHub:** [nguyenpanda](https://github.com/nguyenpanda)
 * **Website:** [nguyenpanda.com](https://www.google.com/search?q=https://nguyenpanda.com)
 

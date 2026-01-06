@@ -1,6 +1,6 @@
 [project]
 name = "nguyenpanda-config"
-version = "0.1.0"
+version = "0.1.1"
 description = "A dynamic YAML configuration engine supporting variable interpolation, function calls, and file inheritance."
 authors = [
     { name = "Tuong Nguyen Ha", email = "hatuongnguyen@0107gmail.com" }
@@ -15,8 +15,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/nguyenpanda/PandaConfig"
-# Documentation = ""
-# Changelog = ""
+Documentation = "https://nguyenpanda.github.io/PandaConfig/"
 Source = "https://github.com/nguyenpanda/PandaConfig"
 
 [build-system]

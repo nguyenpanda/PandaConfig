@@ -49,7 +49,6 @@ source test_env/bin/activate
 
 # Install from TestPyPI
 uv pip install --index-url [https://test.pypi.org/simple/](https://test.pypi.org/simple/) --extra-index-url [https://pypi.org/simple/](https://pypi.org/simple/) nguyenpanda-config
-
 ```
 
 ## 3. Publish to PyPI (Production)
@@ -60,7 +59,6 @@ Once the test release is verified:
 
 ```bash
 uv run twine upload dist/*
-
 ```
 
 * **Username:** `__token__`
