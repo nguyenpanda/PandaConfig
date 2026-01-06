@@ -23,6 +23,14 @@ class PandaConfig:
             self.config_func[name] = (func, args_num)
         return decorator
     
+    @classmethod
+    def register_parser(cls, extension: str, parser: Callable[[Path], dict]):
+        """
+        Register a custom file parser for a specific extension.
+        Delegates to the underlying ConfigLoader.
+        """
+        ConfigLoader.register_parser(extension, parser)
+    
     @property
     def config(self) -> dict[str, Any]:
         if self.config_data:

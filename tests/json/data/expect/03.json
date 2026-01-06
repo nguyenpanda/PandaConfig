@@ -1,0 +1,16 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "timeout": 30,
+    "security": {
+      "ssl": true,
+      "admin_access": false
+    }
+  },
+  "database": {
+    "type": "sqlite"
+  },
+  "logging": "INFO",
+  "app_name": "MyJsonApp"
+}

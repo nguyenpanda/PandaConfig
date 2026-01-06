@@ -1,90 +1,157 @@
 # PandaConfig
 
-**PandaConfig** is a logic-driven configuration library that transforms static YAML into executable code. It supports variable resolution, Python function execution, and inheritance directly within your config files.
+**PandaConfig** is a dynamic configuration engine designed to transform static configuration files into executable code. Unlike traditional loaders, it supports variable resolution, function execution, and file inheritance directly within your configs.
 
-## Features
+**Now supporting both YAML and JSON**, with an extensible architecture ready for future formats (like TOML, XML, or INI).
 
-* **Variables**: Define once, reuse anywhere (`url: http://$host:$port`).
-* **Functions**: Execute logic inside YAML (`files: $(glob ./data *.csv)`).
-* **Inheritance**: Modularize configs with `extends`.
-* **Custom Extensions**: Register your own Python functions.
+## Key Features
+
+* **Multi-Format Support**: Works seamlessly with **YAML** (`.yaml`, `.yml`) and **JSON** (`.json`) out of the box.
+* **Dynamic Variables**: Define values once and interpolate them anywhere (`url: "http://$host:$port"`).
+* **Function Execution**: Run Python logic directly inside your config (`secret: "$(get_env API_KEY)"`).
+* **File Inheritance**: Keep configs DRY (Don't Repeat Yourself) using the `extends` keyword.
+* **Extensible Architecture**: Easily register custom functions or add support for new file formats without modifying the core library.
 
 ## Installation
 
+Install via pip or uv:
+
 ```bash
+# Using pip
 pip install nguyenpanda-config
+
+# Using uv
+uv add nguyenpanda-config
 ```
 
-## How to Use
+## Quick Start
 
-### 1. The YAML Configuration
+### 1. Define Your Configuration
 
-PandaConfig extends YAML with `extends`, `$variable`, and `$(function)` syntax.
+PandaConfig works identically across different formats. Choose the one you prefer.
+
+**Option A: YAML (`config.yaml`)**
 
 ```yaml
-# prod.yaml
-extends: "./base.yaml"  # Inherit settings
+extends: "./base.yaml"
 
-app_name: "PandaApp"
 server:
   host: "localhost"
   port: 8080
-  url: "http://$host:$port/api"  # Variable substitution
+  url: "http://$server.host:$server.port/api"     # Variable interpolation ($var)
 
-logging:
-  # Function execution
-  file: "$(find_ancestor . pyproject.toml)/logs/$(now).log"
+logs:
+  path: "$(path ./logs)/$(now).log"                # Function execution ($(func arg))
 ```
 
-### 2. Loading in Python
+**Option B: JSON (`config.json`)**
+
+```json
+{
+  "extends": "./base.json",
+  "server": {
+    "host": "localhost",
+    "port": 8080,
+    "url": "http://$server.host:$server.port/api"
+  },
+  "logs": {
+    "path": "$(path ./logs)/$(now).log"
+  }
+}
+```
+
+### 2. Load it in Python
+
+The `PandaConfig` class automatically detects the file type and parses it accordingly.
 
 ```python
 from PandaConfig import PandaConfig
 
-# Load and resolve
-agent = PandaConfig("prod.yaml")
-config = agent.config
-
-print(config['server']['url']) 
+# Works for YAML
+agent_yaml = PandaConfig("config.yaml")
+print(agent_yaml.config['server']['url']) 
 # Output: http://localhost:8080/api
+
+# Works for JSON
+agent_json = PandaConfig("config.json")
+print(agent_json.config['server']['url'])
 ```
 
-## Custom Functions
+## Advanced Usage
 
-Inject your own logic using the `registration` decorator.
+### Custom Functions
+
+You can extend the logic available inside your configuration files by registering Python functions.
 
 ```python
 import os
 from PandaConfig import PandaConfig
 
+# 1. Initialize
 agent = PandaConfig("config.yaml")
 
-@agent.registration("get_env", 2) # Register function 'get_env' with 2 args
-def get_env(key, default):
-    return os.getenv(key, default)
+# 2. Register a custom function
+@agent.registration("env", 1)  # Name='env', Expected Args=1
+def get_env_var(key):
+    return os.getenv(key, "UNKNOWN")
 
-# YAML Usage: 
-# secret: "$(get_env API_KEY 12345)"
+# 3. Use it in YAML/JSON: 
+# db_password: "$(env DB_PASS)"
+```
+
+### Adding New File Formats (Future-Proofing)
+
+PandaConfig is designed to be agnostic to the file format. You can register new parsers (e.g., TOML) dynamically.
+
+```python
+import tomllib
+from PandaConfig import ConfigLoader
+
+# Register a parser for .toml files
+ConfigLoader.register_parser('.toml', lambda path: tomllib.load(open(path, "rb")))
+
+# Now you can load TOML files!
+agent = PandaConfig("settings.toml")
 ```
 
 ## Built-in Functions
 
+PandaConfig comes with a suite of utility functions ready to use:
+
 | Function | Args | Description |
 | --- | --- | --- |
-| `path` | 1 | Convert string to `Path` object |
-| `abspath` | 1 | Get absolute path |
-| `glob` | 2 | `(dir, pattern)` List matching files |
-| `rglob` | 2 | Recursive glob |
-| `find_ancestor` | 2 | `(path, target)` Find parent dir containing target |
-| `now` | 0 | Current timestamp |
-| `strftime` | 2 | `(time_str, fmt)` Format timestamp |
-| `list` | 1 | Wrap item in list `[item]` |
-| `filter` | 2 | `(func, list)` Filter list items |
+| `path` | 1 | Convert string to a system-safe `Path` object |
+| `abspath` | 1 | Get the absolute path of a file/folder |
+| `glob` | 2 | `(dir pattern)` List matching files |
+| `rglob` | 2 | Recursive glob listing |
+| `find_ancestor` | 2 | `(path target)` Find parent dir containing a target file |
+| `now` | 0 | Get current timestamp |
+| `list` | 1 | Wrap an item in a list `[item]` |
 | `not` | 1 | Boolean negation |
 
-## Running Tests
+## Development & Testing
+
+We use `uv` for dependency management and `pytest` for testing. The test suite is dynamic and automatically picks up new test cases added to the `data/cases` directory.
 
 ```bash
-pytest tests/
-
+# Run all tests (YAML, JSON, etc.)
+uv run pytest
 ```
+
+---
+
+## Author
+
+* **Email:** [hatuongnguyen@0107gmail.com](hatuongnguyen@0107gmail.com)
+* **GitHub:** [nguyenpanda](https://github.com/nguyenpanda)
+* **Website:** [nguyenpanda.com](https://www.google.com/search?q=https://nguyenpanda.com)
+
+If you find this project useful, please consider giving it a ⭐ on GitHub!
+
+## License
+
+This project is licensed under the **MIT License**.
+
+You are free to use, modify, and distribute this software, provided that the original copyright notice and permission notice are included in all copies or substantial portions of the software.
+
+See the [LICENSE](https://www.google.com/search?q=LICENSE) file for more details.

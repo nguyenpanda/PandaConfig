@@ -1,0 +1,7 @@
+{
+  "database": {
+    "host": "localhost",
+    "timeout": 30
+  },
+  "logging": "DEBUG"
+}

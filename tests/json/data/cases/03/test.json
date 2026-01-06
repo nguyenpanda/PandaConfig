@@ -1,0 +1,10 @@
+{
+  "extends": "parent.json",
+  "server": {
+    "host": "127.0.0.1",
+    "security": {
+      "admin_access": false
+    }
+  },
+  "app_name": "MyJsonApp"
+}

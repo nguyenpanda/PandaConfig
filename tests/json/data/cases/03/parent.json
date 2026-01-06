@@ -1,0 +1,10 @@
+{
+  "extends": "grandparent.json",
+  "server": {
+    "port": 8080,
+    "security": {
+      "ssl": true
+    }
+  },
+  "logging": "INFO"
+}

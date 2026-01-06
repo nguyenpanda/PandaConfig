@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "generated_at": "$(now)",
+    "author": "$(upper nguyenpanda)"
+  },
+  "calculations": {
+    "simple_sum": "$(add 10 20)",
+    "complex_sum": "$(add 100 200 300 5)",
+    "string_join": "$(join python is awesome)"
+  },
+  "dynamic_paths": {
+    "root": "/var/www",
+    "logs": "$(join /var/www logs error.txt)"
+  }
+}

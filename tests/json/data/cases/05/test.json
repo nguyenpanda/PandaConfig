@@ -1,0 +1,16 @@
+{
+  "extends": "base.json",
+  "level1": {
+    "level2": {
+      "level3": {
+        "level4": {
+          "level5": {
+            "value": "override_value",
+            "new_attr": "new"
+          },
+          "level5_sibling": true
+        }
+      }
+    }
+  }
+}

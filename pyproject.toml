@@ -15,8 +15,8 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/nguyenpanda/PandaConfig"
-# Documentation = "https://starlette.dev/"
-# Changelog = "https://starlette.dev/release-notes/"
+# Documentation = ""
+# Changelog = ""
 Source = "https://github.com/nguyenpanda/PandaConfig"
 
 [build-system]

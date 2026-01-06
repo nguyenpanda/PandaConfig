@@ -1,0 +1,27 @@
+{
+  "project": "Super Computer 2031",
+  "is_active": true,
+  "deprecated": null,
+  "contributors": [
+    {
+      "name": "Alice",
+      "role": "Lead"
+    },
+    {
+      "name": "Bob",
+      "role": "Dev"
+    }
+  ],
+  "matrix": [
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1]
+  ],
+  "settings": {
+    "themes": ["dark", "light", "high-contrast"],
+    "limits": {
+      "cpu": 90.5,
+      "memory": "16GB"
+    }
+  }
+}

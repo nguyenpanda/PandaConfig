@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "generated_at": "2026-01-01 12:00:00.000000",
+    "author": "NGUYENPANDA"
+  },
+  "calculations": {
+    "simple_sum": 30,
+    "complex_sum": 605,
+    "string_join": "python-is-awesome"
+  },
+  "dynamic_paths": {
+    "root": "/var/www",
+    "logs": "/var/www-logs-error.txt"
+  }
+}

@@ -49,7 +49,8 @@ class TestConfigLoader:
         # Expect RuntimeError as defined in your class
         with pytest.raises(RuntimeError) as exc:
             loader.load()
-        assert "Error parsing YAML" in str(exc.value)
+        print('[nguyenpanda]: ', exc.value)
+        assert "Invalid YAML" in str(exc.value)
 
     def test_config_inheritance(self, tmp_path):
         """Test the 'extends' mechanism (Parent -> Child inheritance)."""

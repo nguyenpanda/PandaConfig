@@ -1,0 +1,7 @@
+{
+  "extends": "base.json",
+  "database": {
+    "host": "localhost"
+  },
+  "logging": "DEBUG"
+}

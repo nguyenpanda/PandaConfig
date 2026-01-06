@@ -1,0 +1,7 @@
+{
+  "database": {
+    "host": "192.168.1.1",
+    "timeout": 30
+  },
+  "logging": "INFO"
+}
