@@ -129,6 +129,36 @@ PandaConfig comes with a suite of utility functions ready to use:
 | `list` | 1 | Wrap an item in a list `[item]` |
 | `not` | 1 | Boolean negation |
 
+## Advanced Usage
+
+### Registering Custom File Types
+
+You can extend PandaConfig to support other file formats (like TOML, JSON, or XML) by registering a custom parser.
+
+Here is an example of how to register a **TOML** parser:
+
+```python
+from PandaConfig import PandaConfig
+import toml
+from pathlib import Path
+from typing import Any
+
+# 1. Define your parsing logic
+def parse_toml(file_path: Path) -> dict[str, Any]:
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return toml.load(f) or {}
+    except toml.TomlDecodeError as e:
+        raise ValueError(f'Invalid TOML in {file_path}: {e}')
+
+# 2. Register the parser for the .toml extension
+PandaConfig.register_parser('.toml', lambda path: parse_toml(path))
+
+# 3. Use PandaConfig with a .toml file
+agent = PandaConfig("./pyproject.toml")
+print(agent.yaml())
+```
+
 ## Development & Testing
 
 We use `uv` for dependency management and `pytest` for testing. The test suite is dynamic and automatically picks up new test cases added to the `data/cases` directory.
