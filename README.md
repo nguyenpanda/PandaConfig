@@ -12,7 +12,7 @@
 ## Installation
 
 ```bash
-pip install .
+pip install nguyenpanda-config
 ```
 
 ## How to Use

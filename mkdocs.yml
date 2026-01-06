@@ -1,0 +1,16 @@
+site_name: NguyenPanda Config
+site_url: https://nguyenpanda.github.io/PandaConfig/
+repo_url: https://github.com/nguyenpanda/PandaConfig
+repo_name: nguyenpanda/PandaConfig
+
+# Theme configuration (Material is the industry standard)
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - content.code.copy
+
+# Navigation Structure (Optional - MkDocs will auto-generate if omitted)
+nav:
+  - Home: index.md
+  # - User Guide: user-guide.md
